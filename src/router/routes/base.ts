@@ -1,8 +1,17 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { REDIRECT_ROUTE_NAME } from '@/router/constants';
 
-export const DEFAULT_LAYOUT = () => import('@/layout/default-layout.vue');
+// 默认布局
+export const DEFAULT_LAYOUT = () => import('@/layout/layout.vue');
 
+// 前台布局
+export const DEFAULT_LAYOUT_WEB = () => import('@/layout/web/web-layout.vue');
+
+// 后台布局
+export const DEFAULT_LAYOUT_ADMIN = () =>
+  import('@/layout/admin/admin-layout.vue');
+
+// 重定向
 export const REDIRECT_MAIN: RouteRecordRaw = {
   path: '/redirect',
   name: 'redirectWrapper',
@@ -24,6 +33,7 @@ export const REDIRECT_MAIN: RouteRecordRaw = {
   ],
 };
 
+// 404
 export const NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:pathMatch(.*)*',
   name: 'notFound',

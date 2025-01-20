@@ -1,25 +1,28 @@
-import type { RouteRecordNormalized } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router';
+import { DEFAULT_LAYOUT_ADMIN, DEFAULT_LAYOUT_WEB } from './base';
+import { appAdminRoutes } from './admin';
+import { appWebRoutes } from './web';
 
-const modules = import.meta.glob('./modules/*.ts', { eager: true });
-const externalModules = import.meta.glob('./externalModules/*.ts', {
-  eager: true,
-});
+// 前后台路由
+const globalRoutes: RouteRecordRaw[] = [
+  {
+    path: '/home',
+    name: 'Home',
+    component: DEFAULT_LAYOUT_WEB,
+    meta: {
+      requiresAuth: false,
+    },
+    children: [...appWebRoutes],
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: DEFAULT_LAYOUT_ADMIN,
+    meta: {
+      requiresAuth: true,
+    },
+    children: [...appAdminRoutes],
+  },
+];
 
-function formatModules(_modules: any, result: RouteRecordNormalized[]) {
-  Object.keys(_modules).forEach((key) => {
-    const defaultModule = _modules[key].default;
-    if (!defaultModule) return;
-    const moduleList = Array.isArray(defaultModule)
-      ? [...defaultModule]
-      : [defaultModule];
-    result.push(...moduleList);
-  });
-  return result;
-}
-
-export const appRoutes: RouteRecordNormalized[] = formatModules(modules, []);
-
-export const appExternalRoutes: RouteRecordNormalized[] = formatModules(
-  externalModules,
-  []
-);
+export default globalRoutes;

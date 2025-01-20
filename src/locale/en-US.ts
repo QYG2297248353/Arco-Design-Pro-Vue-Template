@@ -1,12 +1,18 @@
 import localeMessageBox from '@/components/message-box/locale/en-US';
 import localeLogin from '@/views/login/locale/en-US';
 
-import localeWorkplace from '@/views/dashboard/workplace/locale/en-US';
+// 前台
+import localeAbout from '@/views/web/about/locale/en-US';
 
+// 后台
+import localeWorkplace from '@/views/admin/dashboard/workplace/locale/en-US';
+import localeTemplate from '@/views/admin/template/content/locale/en-US';
 import localeSettings from './en-US/settings';
 
 export default {
   'menu.dashboard': 'Dashboard',
+  'menu.about': 'About',
+  'menu.template': 'Template',
   'menu.server.dashboard': 'Dashboard-Server',
   'menu.server.workplace': 'Workplace-Server',
   'menu.server.monitor': 'Monitor-Server',
@@ -17,12 +23,14 @@ export default {
   'menu.profile': 'Profile',
   'menu.visualization': 'Data Visualization',
   'menu.user': 'User Center',
-  'menu.arcoWebsite': 'Arco Design',
+  'menu.lifebus': 'Lifebus',
   'menu.faq': 'FAQ',
   'navbar.docs': 'Docs',
   'navbar.action.locale': 'Switch to English',
   ...localeSettings,
   ...localeMessageBox,
   ...localeLogin,
+  ...localeAbout,
   ...localeWorkplace,
+  ...localeTemplate,
 };

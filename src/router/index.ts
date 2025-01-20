@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css';
 
-import { appRoutes } from './routes';
+import globalRoutes from './routes';
 import { REDIRECT_MAIN, NOT_FOUND_ROUTE } from './routes/base';
 import createRouteGuard from './guard';
 
@@ -13,7 +13,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: 'login',
+      redirect: '/home/about',
     },
     {
       path: '/login',
@@ -23,7 +23,7 @@ const router = createRouter({
         requiresAuth: false,
       },
     },
-    ...appRoutes,
+    ...globalRoutes,
     REDIRECT_MAIN,
     NOT_FOUND_ROUTE,
   ],

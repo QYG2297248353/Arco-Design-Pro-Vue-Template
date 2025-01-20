@@ -16,7 +16,15 @@ export default mergeConfig(
     ],
     build: {
       rollupOptions: {
+        makeAbsoluteExternalsRelative: true,
+        preserveEntrySignatures: 'strict',
         output: {
+          esModule: true,
+          generatedCode: {
+            reservedNamesAsProps: false,
+          },
+          interop: 'compat',
+          systemNullSetters: false,
           manualChunks: {
             arco: ['@arco-design/web-vue'],
             chart: ['echarts', 'vue-echarts'],
